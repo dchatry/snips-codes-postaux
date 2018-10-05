@@ -6,7 +6,7 @@ from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
 import io
 import math
-import json
+import simplejson
 import requests
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
@@ -44,7 +44,7 @@ def action_wrapper(hermes, intentMessage, conf):
     ville = int(intentMessage.slots.ville.first().value)
 
     response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q="+ville+"&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
-    json_data = json.loads(response.text)
+    json_data = simplejson.loads(response.text)
     codepostal = json_data['records'][0]['fields']['postal_code']
 
     result_sentence = "Le code postal de {} est {} .".format(ville, codepostal)
