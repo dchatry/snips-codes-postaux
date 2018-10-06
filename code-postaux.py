@@ -26,7 +26,7 @@ def intent_received(hermes, intentMessage):
     #     result_sentence = ville
     # else:
         # result_sentence = "je ne te connais pas"
-    if intent_message.intent.intent_name == 'codepostal':
+    if intentMessage.intent.intent_name == 'codepostal':
         result_sentence = "test"
     else:
         return
