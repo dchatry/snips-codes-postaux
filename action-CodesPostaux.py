@@ -43,8 +43,15 @@ def action_wrapper(hermes, intentMessage, conf):
     ville = intentMessage.slots.ville.first().value
     response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q="+ville+"&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
     json_data = simplejson.loads(response.text)
-    codepostal = json_data['records'][0]['fields']['postal_code'] 
-    result_sentence ="Le code postal de {} est {}.".format(ville,str(codepostal))
+    if (intentMessage.intent.intent_name == "codepostal"):
+        codepostal = json_data['records'][0]['fields']['postal_code'] 
+        result_sentence ="Le code postal de {} est {}.".format(ville,str(codepostal))
+    if (intentMessage.intent.intent_name == "departement"):
+        departement = json_data['records'][0]['fields']['nom_dept'] 
+        numdep = json_data['records'][0]['fields']['code_dept'] 
+        result_sentence ="Le département de {} est {} avec le numéro {}.".format(ville,str(departement),str(numdep))
+
+    
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
     
@@ -53,5 +60,6 @@ def action_wrapper(hermes, intentMessage, conf):
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
         h.subscribe_intent("roozeec:codepostal", subscribe_intent_callback) \
+         .subscribe_intent("roozeec:departement", subscribe_intent_callback) \
          .start()
 
