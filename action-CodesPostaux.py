@@ -40,10 +40,9 @@ def action_wrapper(hermes, intentMessage, conf):
      
     Refer to the documentation for further details. 
     """ 
-    # response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q=Louannec&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
-    # ville = intentMessage.slots.ville.first().value
-    # result_sentence ="Ville "+ville
-    result_sentence="Bonjour"
+    response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q=Louannec&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
+    ville = intentMessage.slots.ville.first().value
+    result_sentence ="Le code postal de {} est {}.".format(ville,str(codepostal))
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
     
