@@ -53,3 +53,4 @@ if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
         h.subscribe_intent("roozeec:codepostal", subscribe_intent_callback) \
          .start()
+
