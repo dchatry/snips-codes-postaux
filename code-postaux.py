@@ -8,6 +8,7 @@ import io
 import math
 import simplejson
 import requests
+import hermes_python
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
@@ -51,12 +52,13 @@ def action_wrapper(hermes, intentMessage, conf):
     #     result_sentence = ville
     # else:
         # result_sentence = "je ne te connais pas"
-    result_sentence = "test"
+    test = "test"
+    result_sentence = hermes.skill.speak_item(test)
     current_session_id = intentMessage.session_id
-    hermes.publish_end_session(current_session_id, result_sentence)
+    hermes.publish_end_session(current_session_id, result_sentence.decode("latin-1"))
 
 
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
-        h.subscribe_intent("roozeec:codepostal", subscribe_intent_callback) \
-.start()
+        h.subscribe_intent("codepostal", subscribe_intent_callback) \
+        .loop_forever()
