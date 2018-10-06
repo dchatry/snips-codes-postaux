@@ -41,6 +41,7 @@ def action_wrapper(hermes, intentMessage, conf):
     Refer to the documentation for further details. 
     """
     ville = intentMessage.slots.ville.first().value
+    print "Intent {}".format(intentMessage.intent)
     response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q="+ville+"&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
     json_data = simplejson.loads(response.text)
     if (intentMessage.intent.intent_name == "codepostal"):
