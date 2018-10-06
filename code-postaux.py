@@ -43,9 +43,9 @@ def action_wrapper(hermes, intentMessage, conf):
     #ville = "Brest"
     ville = intentMessage.slots.ville.first().value
     #result_sentence="Ville {}".format(str(ville))
-    response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q="+ville+"&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
-    json_data = simplejson.loads(response.text)
-    codepostal = json_data['records'][0]['fields']['postal_code']
+    #response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q="+ville+"&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
+    #json_data = simplejson.loads(response.text)
+    #codepostal = json_data['records'][0]['fields']['postal_code']
 
     result_sentence = "Le code postal de {} est ".format(str(ville))
     current_session_id = intentMessage.session_id
