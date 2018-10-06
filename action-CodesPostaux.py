@@ -31,7 +31,7 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 
 def call_http_opendata(curville):
-    response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q="+ville+"&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
+    response = requests.get("https://public.opendatasoft.com/api/records/1.0/search/?dataset=correspondance-code-insee-code-postal&q="+curville+"&facet=insee_com&facet=nom_dept&facet=nom_region&facet=statut")
     json_data = simplejson.loads(response.text)
     return json_data
 
