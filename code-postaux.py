@@ -48,7 +48,6 @@ def action_wrapper(hermes, intentMessage, conf):
     codepostal = json_data['records'][0]['fields']['postal_code']
 
     result_sentence = "Le code postal de {} est ".format(str(ville))
-    result_sentence = 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
     
