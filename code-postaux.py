@@ -52,13 +52,12 @@ def action_wrapper(hermes, intentMessage, conf):
     #     result_sentence = ville
     # else:
         # result_sentence = "je ne te connais pas"
-    test = "test"
-    result_sentence = hermes.skill.speak_item(test)
+    result_sentence = "test"
     current_session_id = intentMessage.session_id
-    hermes.publish_end_session(current_session_id, result_sentence.decode("latin-1"))
+    hermes.publish_end_session(current_session_id, result_sentence)
 
 
 if __name__ == "__main__":
     with Hermes("localhost:1883") as h:
-        h.subscribe_intent("codepostal", subscribe_intent_callback) \
+        h.subscribe_intent("roozeec:codepostal", subscribe_intent_callback) \
         .loop_forever()
