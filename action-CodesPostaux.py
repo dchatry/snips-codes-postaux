@@ -38,15 +38,15 @@ def call_http_opendata(curville):
 def process_codepostal(hermes, intentMessage):
     ville = intentMessage.slots.ville.first().value
     jsdata = call_http_opendata(ville)
-    codepostal = json_data['records'][0]['fields']['postal_code'] 
+    codepostal = jsdata['records'][0]['fields']['postal_code'] 
     result_sentence ="Le code postal de {} est {}.".format(ville,str(codepostal))
     snips_speak(hermes, intentMessage,result_sentence)
 
 def process_departement(hermes, intentMessage):
     ville = intentMessage.slots.ville.first().value
     jsdata = call_http_opendata(ville)
-    departement = json_data['records'][0]['fields']['nom_dept'] 
-    numdep = json_data['records'][0]['fields']['code_dept'] 
+    departement = jsdata['records'][0]['fields']['nom_dept'] 
+    numdep = jsdata['records'][0]['fields']['code_dept'] 
     result_sentence ="Le département de {} est {} avec le numéro {}.".format(ville,str(departement),str(numdep))
     snips_speak(hermes, intentMessage,result_sentence)
 
