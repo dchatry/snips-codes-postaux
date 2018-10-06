@@ -47,7 +47,7 @@ def process_departement(hermes, intentMessage):
     jsdata = call_http_opendata(ville)
     departement = jsdata['records'][0]['fields']['nom_dept'] 
     numdep = jsdata['records'][0]['fields']['code_dept'] 
-    result_sentence ="Le département de {} est {} avec le numéro {}.".format(ville,str(departement),str(numdep))
+    result_sentence ="Le departement de {} est {} avec le numero {}.".format(ville,str(departement),str(numdep))
     snips_speak(hermes, intentMessage,result_sentence)
 
 def snips_speak(hermes, intentMessage,sentence):
